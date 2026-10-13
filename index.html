@@ -1,25 +1,45 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore Vishesh Chaudhary's developer portfolio,
-     projects, skills, and learning journey in computer science and AI.">
-    <title>Vishesh | Developer Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-</head>
-<body>
-  
-    <nav class="navbar">
-        <a class="logo" href="#home">
-        <img src="assets/v-logo.png" alt="Vishesh logo">
-        <span>Vishesh Chaudhary</span>
-    </a>
 
-        <button id="menu-toggle" type="button"
-                aria-expanded="false" aria-controls="nav-links">
+    <meta
+        name="description"
+        content="Explore Vishesh Chaudhary's developer portfolio, projects, skills, and learning journey in computer science and AI."
+    >
+
+    <meta name="theme-color" content="#0b1120">
+    <title>Vishesh Chaudhary | Developer Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" aria-label="Main navigation">
+
+        <a class="logo" href="#home" aria-label="Vishesh Chaudhary home">
+            <img src="assets/v-logo.png" alt="">
+            <span>Vishesh Chaudhary</span>
+        </a>
+
+        <button
+            id="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="nav-links"
+            aria-label="Toggle navigation menu"
+        >
             ☰ Menu
         </button>
 
@@ -30,113 +50,240 @@
             <a href="#projects">Projects</a>
             <a href="#certifications">Certifications</a>
             <a href="#contact">Contact</a>
-            <button id="theme-toggle" type="button">☀️ Light Mode</button>
+
+            <button id="theme-toggle" type="button">
+                ☀️ Light Mode
+            </button>
         </div>
     </nav>
 
-    <section id="home" class="hero">
-        <p class="greeting">WELCOME TO MY PORTFOLIO</p>
+    <!-- Hero Section -->
+    <main>
+        <section id="home" class="hero">
 
-        <h1>Hi, I'm Vishesh 👋</h1>
+            <div class="hero-content">
 
-        <h2>Aspiring Developer | CSE Student</h2>
-
-        <p>
-            I enjoy programming, exploring artificial intelligence,
-            and building projects that solve real problems.
-        </p>
-
-        <a href="#projects" class="btn">Explore My Projects</a>
-    </section>
-
-
-    
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            I'm a first-semester B.Tech CSE student exploring
-            software development, programming, and artificial intelligence.
-            I'm building my skills by creating practical projects.
-        </p>
-    </section>
-
-
-    <section id="skills">
-        <h2>My Skills</h2>
-
-        <div class="skills-container">
-            <div class="skill-card">C Programming</div>
-            <div class="skill-card">HTML</div>
-            <div class="skill-card">CSS</div>
-            <div class="skill-card">Problem Solving</div>
-            <div class="skill-card">Learning JavaScript</div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>My Projects</h2>
-
-        <div class="projects-container">
-            <article class="project-card">
-                <h3>Pragya AI Assistant</h3>
-                <p>
-                    A personal Windows voice assistant project
-                    designed to respond to voice commands.
+                <p class="greeting">
+                    WELCOME TO MY DIGITAL WORLD
                 </p>
-                <span class="project-tech">Python · PySide6 · Ollama</span>
-            </article>
 
-            <article class="project-card">
-                <h3>Campus Smart Assistant</h3>
-                <p>
-                    A web app concept for tracking attendance,
-                    assignments, and estimated CGPA.
+                <h1>
+                    Hi, I'm <span class="hero-name">Vishesh</span> 👋
+                </h1>
+
+                <h2>
+                    Aspiring Developer
+                    <span class="hero-divider">|</span>
+                    CSE Student
+                </h2>
+
+                <p class="hero-description">
+                    I enjoy programming, exploring artificial intelligence,
+                    and building projects that solve real problems.
                 </p>
-                <span class="project-tech">HTML · CSS · JavaScript</span>
-            </article>
-        </div>
-    </section>
 
+                <div class="hero-actions">
+                    <a href="#projects" class="btn">
+                        Explore My Projects ↗
+                    </a>
 
-    <section id="certifications">
-        <h2>Certifications & Learning</h2>
+                    <a
+                        href="https://github.com/vishesh-cse"
+                        class="btn hero-secondary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        GitHub ↗
+                    </a>
+                </div>
 
-        <div class="projects-container">
-            <article class="project-card">
-                <h3>Getting Started with AI</h3>
-                <p>IBM SkillsBuild</p>
-                <p>Introduction to artificial intelligence concepts.</p>
-            </article>
+                <div
+                    class="hero-interests"
+                    aria-label="Areas of interest"
+                >
+                    <span>C Programming</span>
+                    <span>Web Development</span>
+                    <span>Artificial Intelligence</span>
+                </div>
 
-            <article class="project-card">
-                <h3>GenAI Powered Data Analytics</h3>
-                <p>Tata iQ Job Simulation · Forage</p>
-                <p>Practiced data analysis, risk profiling, and AI-driven recommendations.</p>
-            </article>
-        </div>
-    </section>
+            </div>
 
-    <section id="contact">
-        <h2>Let's Connect</h2>
-        <p>I'm learning, building projects, and connecting with fellow developers.</p>
+            <!-- Profile Photo and Personal Brand -->
+            <div class="hero-visual">
 
-        <div class="contact-links">
-            <a href="https://github.com/vishesh-cse"
-               target="_blank" rel="noopener noreferrer">GitHub</a>
+                <div class="portrait-frame">
+                    <img
+                        class="profile-photo"
+                        src="assets/vishesh-profile.jpg"
+                        alt="Vishesh Chaudhary"
+                        width="600"
+                        height="600"
+                        fetchpriority="high"
+                    >
+                </div>
 
-            <a href="https://www.linkedin.com/in/vishesh-chaudhary-7802b942b/"
-               target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <!-- Cosmic V Logo Card -->
+                <div
+                    class="avatar-card"
+                    aria-label="Vishesh personal brand"
+                >
+                    <img
+                        class="avatar-logo"
+                        src="assets/v-logoo.png"
+                        alt="Cosmic geometric V logo"
+                        width="176"
+                        height="104"
+                    >
 
-            <a href="mailto:visheshchoudhary783@gmail.com">Email Me</a>
+                    <span>VISHESH · AI &amp; CODE</span>
+                </div>
 
-            <a href="assets/Vishesh-Chaudhary-Resume.pdf"class="btn"download>
-                Download Resume</a>
+                <p class="hero-signature">
+                    Learn. Build. Evolve.
+                </p>
 
-        </div>
-    </section>
+            </div>
+        </section>
 
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+
+            <p>
+                I'm a first-semester B.Tech CSE student exploring
+                software development, programming, and artificial
+                intelligence. I'm building my skills by creating
+                practical projects.
+            </p>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>My Skills</h2>
+
+            <div class="skills-container">
+                <div class="skill-card">C Programming</div>
+                <div class="skill-card">HTML</div>
+                <div class="skill-card">CSS</div>
+                <div class="skill-card">Problem Solving</div>
+                <div class="skill-card">Learning JavaScript</div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>My Projects</h2>
+
+            <div class="projects-container">
+
+                <article class="project-card">
+                    <h3>Pragya AI Assistant</h3>
+
+                    <p>
+                        A personal Windows voice assistant project
+                        designed to respond to voice commands.
+                    </p>
+
+                    <span class="project-tech">
+                        Python · PySide6 · Ollama
+                    </span>
+                </article>
+
+                <article class="project-card">
+                    <h3>Campus Smart Assistant</h3>
+
+                    <p>
+                        A web app concept for tracking attendance,
+                        assignments, and estimated CGPA.
+                    </p>
+
+                    <span class="project-tech">
+                        HTML · CSS · JavaScript
+                    </span>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications">
+            <h2>Certifications &amp; Learning</h2>
+
+            <div class="projects-container">
+
+                <article class="project-card">
+                    <h3>Getting Started with AI</h3>
+
+                    <p>IBM SkillsBuild</p>
+
+                    <p>
+                        Introduction to artificial intelligence concepts.
+                    </p>
+                </article>
+
+                <article class="project-card">
+                    <h3>GenAI Powered Data Analytics</h3>
+
+                    <p>Tata iQ Job Simulation · Forage</p>
+
+                    <p>
+                        Practiced data analysis, risk profiling,
+                        and AI-driven recommendations.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Let's Connect</h2>
+
+            <p>
+                I'm learning, building projects, and connecting
+                with fellow developers.
+            </p>
+
+            <div class="contact-links">
+
+                <a
+                    href="https://github.com/vishesh-cse"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    GitHub
+                </a>
+
+                <a
+                    href="https://www.linkedin.com/in/vishesh-chaudhary-7802b942b/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    LinkedIn
+                </a>
+
+                <a href="mailto:visheshchoudhary783@gmail.com">
+                    Email Me
+                </a>
+
+                <a
+                    href="assets/Vishesh-Chaudhary-Resume.pdf"
+                    class="btn"
+                    download
+                >
+                    Download Resume
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
     <footer>
-        <p>© 2026 Vishesh Chaudhary. Built with HTML and CSS.</p>
+        <p>
+            © 2026 Vishesh Chaudhary. Built with HTML and CSS.
+        </p>
     </footer>
 
 </body>
