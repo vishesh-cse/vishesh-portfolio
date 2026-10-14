@@ -1,290 +1,575 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta
-        name="description"
-        content="Explore Vishesh Chaudhary's developer portfolio, projects, skills, and learning journey in computer science and AI."
-    >
-
-    <meta name="theme-color" content="#0b1120">
-    <title>Vishesh Chaudhary | Developer Portfolio</title>
+    <meta name="theme-color" content="#080d1c">
+    <title>Vishesh Chaudhary | Welcome</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    <script src="script.js" defer></script>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #080d1c;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .landing {
+            position: relative;
+            min-height: 100vh;
+            min-height: 100svh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 24px 40px;
+            isolation: isolate;
+            text-align: center;
+        }
+
+        .landing::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(5, 10, 25, 0.48),
+                    rgba(5, 10, 25, 0.65) 55%,
+                    rgba(5, 10, 25, 0.88)
+                ),
+                url("assets/hero-scenery.jpg") center / cover no-repeat;
+            transform: scale(1.02);
+        }
+
+        .landing::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(
+                ellipse at center,
+                transparent 10%,
+                rgba(3, 7, 18, 0.45) 100%
+            );
+        }
+
+            
+
+        .landing-content {
+            width: 100%;
+            max-width: 900px;
+            animation: appear 1s ease both;
+        }
+
+        .eyebrow {
+            color: #9be7ff;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(48px, 9vw, 96px);
+            line-height: 1.05;
+            letter-spacing: -0.055em;
+            margin-bottom: 22px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(100deg, #ffffff, #8be9ff, #b8a6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .tagline {
+            max-width: 590px;
+            margin: 0 auto;
+            color: #d0d8e9;
+            font-size: clamp(15px, 2vw, 19px);
+            line-height: 1.8;
+        }
+
+        .motto {
+            margin-top: 20px;
+            color: #aebbd2;
+            font-size: 12px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        .enter-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 38px;
+            padding: 16px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 999px;
+            background: linear-gradient(110deg, #8be9ff, #b9a5ff);
+            color: #071020;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            box-shadow: 0 0 35px rgba(100, 190, 255, 0.22);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .enter-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 48px rgba(100, 190, 255, 0.4);
+        }
+
+        .footer-note {
+            position: absolute;
+            bottom: 22px;
+            left: 20px;
+            right: 20px;
+            color: #aebbd2;
+            font-size: 11px;
+            letter-spacing: 0.12em;
+        }
+
+        /* Desktop-style layout toggle */
+        body.desktop-mode .landing {
+            padding-left: 7vw;
+            padding-right: 7vw;
+        }
+
+        body.desktop-mode .landing-content {
+            max-width: 1100px;
+        }
+
+        body.desktop-mode h1 {
+            font-size: clamp(64px, 8vw, 112px);
+        }
+
+        body.desktop-mode .tagline {
+            max-width: 760px;
+            font-size: 19px;
+        }
+
+        body.desktop-mode .landing::before {
+            background-position: center 45%;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Navigation toggle button */
+        .menu-toggle {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            z-index: 20;
+            width: 48px;
+            height: 48px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 14px;
+            background: rgba(8, 13, 28, 0.82);
+            color: #ffffff;
+            font-size: 24px;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+        }
+
+        /* Hidden menu by default */
+        .site-nav {
+            position: absolute;
+            top: 82px;
+            left: 24px;
+            z-index: 19;
+            display: none;
+            min-width: 220px;
+            padding: 10px;
+            border: 1px solid rgba(139, 233, 255, 0.2);
+            border-radius: 16px;
+            background: rgba(8, 13, 28, 0.96);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(18px);
+        }
+
+        /* Show links when JavaScript adds .open */
+        .site-nav.open {
+            display: grid;
+            gap: 4px;
+        }
+
+        .site-nav a {
+            display: block;
+            padding: 12px 14px;
+            border-radius: 9px;
+            color: #e8efff;
+            text-decoration: none;
+            text-align: left;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .site-nav a:hover,
+        .site-nav a:focus-visible {
+    background: rgba(139, 233, 255, 0.12);
+            color: #8be9ff;
+        }
+
+        @media (max-width: 600px) {
+            .menu-toggle {
+                top: 16px;
+                left: 16px;
+            }
+
+            .site-nav {
+                top: 72px;
+                left: 16px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .landing {
+                padding: 100px 22px 65px;
+            }
+
+            .desktop-toggle {
+                top: 16px;
+                right: 16px;
+            }
+
+            .eyebrow {
+                font-size: 10px;
+                letter-spacing: 0.2em;
+            }
+
+            .motto {
+                font-size: 10px;
+                letter-spacing: 0.14em;
+            }
+
+            body.desktop-mode h1 {
+                font-size: clamp(44px, 10vw, 64px);
+            }
+
+            body.desktop-mode .tagline {
+                font-size: 15px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        .vc-logo {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            z-index: 20;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vc-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .vc-logo {
+                top: 16px;
+                right: 16px;
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        .landing-footer {
+            position: absolute;
+            bottom: 22px;
+            left: 20px;
+            right: 20px;
+            text-align: center;
+            color: #C5D0E5;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .landing-footer p {
+            margin: 5px 0;
+        }
+
+        .footer-motto {
+            color: #8BE9FF;
+            font-size: 10px;
+            letter-spacing: 3px;
+        }
+
+        .footer-credit {
+            color: #7C8AA5;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-height: 550px) {
+            .landing-footer {
+                position: relative;
+                bottom: auto;
+                margin-top: 30px;
+            }
+        }
+
+        .shayari-slider {
+            margin: 24px auto;
+            max-width: 650px;
+            min-height: 100px;
+            text-align: center;
+        }
+
+        .shayari {
+            display: none;
+            color: #DCE7FF;
+            font-size: clamp(14px, 2vw, 18px);
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .shayari.active {
+            display: block;
+            animation: shayariFade 0.8s ease;
+        }
+
+        .shayari p {
+            margin: 3px 0;
+        }
+
+        .shayari-dots {
+            display: flex;
+            justify-content: center;
+            gap: 9px;
+            margin-top: 14px;
+        }
+
+        .shayari-dots button {
+            width: 8px;
+            height: 8px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: #46516B;
+            cursor: pointer;
+        }
+
+        .shayari-dots button.active {
+            width: 22px;
+            border-radius: 6px;
+            background: #8BE9FF;
+        }
+
+        @keyframes shayariFade {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .shayari-slider {
+                margin: 18px auto;
+                min-height: 115px;
+            }
+        }
+
+        /* Fix spacing between CTA and footer */
+        .enter-button {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 32px;
+        }
+
+        .landing-footer {
+            bottom: 16px;
+        }
+
+        /* Keep content comfortable on smaller screens */
+        .landing-content {
+            padding-bottom: 90px;
+        }
+
+        @media (max-height: 650px) {
+            .landing-content {
+                padding-bottom: 70px;
+            }
+
+            .enter-button {
+                margin-bottom: 20px;
+            }
+        }
+
+    </style>
 </head>
 
 <body>
-
-    <!-- Navigation -->
-    <nav class="navbar" aria-label="Main navigation">
-
-        <a class="logo" href="#home" aria-label="Vishesh Chaudhary home">
-            <img src="assets/v-logo.png" alt="">
-            <span>Vishesh Chaudhary</span>
-        </a>
-
+    <main class="landing">
+        
         <button
+            class="menu-toggle"
             id="menu-toggle"
             type="button"
             aria-expanded="false"
             aria-controls="nav-links"
-            aria-label="Toggle navigation menu"
+            aria-label="Open navigation menu"
         >
-            ☰ Menu
+            ☰
         </button>
 
-        <div id="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#certifications">Certifications</a>
-            <a href="#contact">Contact</a>
+        <a class="vc-logo" href="index.html" aria-label="Vishesh Chaudhary home">
+            <img src="assets/vc-logo.jpg" alt="VC Logo">
+        </a>
 
-            <button id="theme-toggle" type="button">
-                ☀️ Light Mode
-            </button>
+        <nav class="site-nav" id="nav-links" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="achievements.html">Achievements</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="landing-content">
+            <p class="eyebrow">WELCOME TO MY DIGITAL WORLD</p>
+
+            <h1>
+                Ideas into<br>
+                <span class="gradient-text">Reality.</span>
+            </h1>
+
+            <p class="tagline">
+                I'm Vishesh, a CSE student exploring code, artificial
+                intelligence, and the possibilities of building something
+                meaningful.
+            </p>
+
+        <div class="shayari-slider" aria-live="polite">
+            <div class="shayari active">
+                <p>ख़्वाबों को सोच से, सोच को उड़ान देनी है,</p>
+                <p>अभी तो बस शुरुआत है, अपनी पहचान बनानी है।</p>
+            </div>
+
+            <div class="shayari">
+                <p>रास्ते नए हैं, इरादे जवान हैं,</p>
+                <p>कोड की लकीरों में, अपने अरमान हैं।</p>
+            </div>
+
+            <div class="shayari">
+                <p>मंज़िल से पहले सफ़र को बनाऊँगा ख़ास,</p>
+                <p>हर नई कोशिश से लिखूँगा अपना इतिहास।</p>
+            </div>
+
+            <div class="shayari-dots" aria-label="Shayari selection">
+                <button class="active" aria-label="Shayari 1"></button>
+                <button aria-label="Shayari 2"></button>
+                <button aria-label="Shayari 3"></button>
+            </div>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <main>
-        <section id="home" class="hero">
+            <p class="motto">Learn. Build. Evolve.</p>
 
-            <div class="hero-content">
+            <a class="enter-button" href="about.html">
+                Enter My World <span aria-hidden="true">↗</span>
+            </a>
+        </div>
 
-                <p class="greeting">
-                    WELCOME TO MY DIGITAL WORLD
-                </p>
-
-                <h1>
-                    Hi, I'm <span class="hero-name">Vishesh</span> 👋
-                </h1>
-
-                <h2>
-                    Aspiring Developer
-                    <span class="hero-divider">|</span>
-                    CSE Student
-                </h2>
-
-                <p class="hero-description">
-                    I enjoy programming, exploring artificial intelligence,
-                    and building projects that solve real problems.
-                </p>
-
-                <div class="hero-actions">
-                    <a href="#projects" class="btn">
-                        Explore My Projects ↗
-                    </a>
-
-                    <a
-                        href="https://github.com/vishesh-cse"
-                        class="btn hero-secondary"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        GitHub ↗
-                    </a>
-                </div>
-
-                <div
-                    class="hero-interests"
-                    aria-label="Areas of interest"
-                >
-                    <span>C Programming</span>
-                    <span>Web Development</span>
-                    <span>Artificial Intelligence</span>
-                </div>
-
-            </div>
-
-            <!-- Profile Photo and Personal Brand -->
-            <div class="hero-visual">
-
-                <div class="portrait-frame">
-                    <img
-                        class="profile-photo"
-                        src="assets/vishesh-profile.jpg"
-                        alt="Vishesh Chaudhary"
-                        width="600"
-                        height="600"
-                        fetchpriority="high"
-                    >
-                </div>
-
-                <!-- Cosmic V Logo Card -->
-                <div
-                    class="avatar-card"
-                    aria-label="Vishesh personal brand"
-                >
-                    <img
-                        class="avatar-logo"
-                        src="assets/v-logoo.png"
-                        alt="Cosmic geometric V logo"
-                        width="176"
-                        height="104"
-                    >
-
-                    <span>VISHESH · AI &amp; CODE</span>
-                </div>
-
-                <p class="hero-signature">
-                    Learn. Build. Evolve.
-                </p>
-
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about">
-            <h2>About Me</h2>
-
-            <p>
-                I'm a first-semester B.Tech CSE student exploring
-                software development, programming, and artificial
-                intelligence. I'm building my skills by creating
-                practical projects.
-            </p>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills">
-            <h2>My Skills</h2>
-
-            <div class="skills-container">
-                <div class="skill-card">C Programming</div>
-                <div class="skill-card">HTML</div>
-                <div class="skill-card">CSS</div>
-                <div class="skill-card">Problem Solving</div>
-                <div class="skill-card">Learning JavaScript</div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects">
-            <h2>My Projects</h2>
-
-            <div class="projects-container">
-
-                <article class="project-card">
-                    <h3>Pragya AI Assistant</h3>
-
-                    <p>
-                        A personal Windows voice assistant project
-                        designed to respond to voice commands.
-                    </p>
-
-                    <span class="project-tech">
-                        Python · PySide6 · Ollama
-                    </span>
-                </article>
-
-                <article class="project-card">
-                    <h3>Campus Smart Assistant</h3>
-
-                    <p>
-                        A web app concept for tracking attendance,
-                        assignments, and estimated CGPA.
-                    </p>
-
-                    <span class="project-tech">
-                        HTML · CSS · JavaScript
-                    </span>
-                </article>
-
-            </div>
-        </section>
-
-        <!-- Certifications Section -->
-        <section id="certifications">
-            <h2>Certifications &amp; Learning</h2>
-
-            <div class="projects-container">
-
-                <article class="project-card">
-                    <h3>Getting Started with AI</h3>
-
-                    <p>IBM SkillsBuild</p>
-
-                    <p>
-                        Introduction to artificial intelligence concepts.
-                    </p>
-                </article>
-
-                <article class="project-card">
-                    <h3>GenAI Powered Data Analytics</h3>
-
-                    <p>Tata iQ Job Simulation · Forage</p>
-
-                    <p>
-                        Practiced data analysis, risk profiling,
-                        and AI-driven recommendations.
-                    </p>
-                </article>
-
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact">
-            <h2>Let's Connect</h2>
-
-            <p>
-                I'm learning, building projects, and connecting
-                with fellow developers.
-            </p>
-
-            <div class="contact-links">
-
-                <a
-                    href="https://github.com/vishesh-cse"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    GitHub
-                </a>
-
-                <a
-                    href="https://www.linkedin.com/in/vishesh-chaudhary-7802b942b/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    LinkedIn
-                </a>
-
-                <a href="mailto:visheshchoudhary783@gmail.com">
-                    Email Me
-                </a>
-
-                <a
-                    href="assets/Vishesh-Chaudhary-Resume.pdf"
-                    class="btn"
-                    download
-                >
-                    Download Resume
-                </a>
-
-            </div>
-        </section>
-
+        <footer class="landing-footer">
+            <p>© 2026 Vishesh Chaudhary</p>
+            <p class="footer-credit">Designed with curiosity · Built for the future</p>
+        </footer>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <p>
-            © 2026 Vishesh Chaudhary. Built with HTML and CSS.
-        </p>
-    </footer>
+    <script>
+        
+        const menuToggle = document.getElementById("menu-toggle");
+        const navLinks = document.getElementById("nav-links");
 
+        menuToggle.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("open");
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+            menuToggle.textContent = isOpen ? "✕" : "☰";
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && navLinks.classList.contains("open")) {
+                navLinks.classList.remove("open");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open navigation menu");
+                menuToggle.textContent = "☰";
+                menuToggle.focus();
+            }
+        });
+
+        const shayaris = document.querySelectorAll(".shayari");
+        const dots = document.querySelectorAll(".shayari-dots button");
+        let currentShayari = 0;
+        let shayariTimer;
+
+        function showShayari(index) {
+            currentShayari = index;
+
+            shayaris.forEach((item, i) => {
+                item.classList.toggle("active", i === index);
+            });
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle("active", i === index);
+                dot.setAttribute("aria-pressed", String(i === index));
+            });
+        }
+
+        function startShayariRotation() {
+            clearInterval(shayariTimer);
+            shayariTimer = setInterval(() => {
+                showShayari((currentShayari + 1) % shayaris.length);
+            }, 5000);
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener("click", () => {
+                showShayari(index);
+                startShayariRotation();
+            });
+        });
+
+        showShayari(0);
+        startShayariRotation();
+
+    </script>
 </body>
 </html>
