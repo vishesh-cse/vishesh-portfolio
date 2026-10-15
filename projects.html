@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050816">
+    <meta name="description" content="Explore my C programming practice, Pragya voice assistant, and personal portfolio projects.">
+    <title>Projects | VISHESH.CSE</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --bg: #050816;
+            --panel: rgba(15, 25, 49, .82);
+            --cyan: #55eaff;
+            --violet: #ac91ff;
+            --text: #edf4ff;
+            --muted: #a5b4ce;
+            --border: rgba(116, 197, 255, .2);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse at 10% 0%, rgba(31, 105, 190, .2), transparent 35%),
+                radial-gradient(ellipse at 90% 40%, rgba(126, 65, 220, .13), transparent 35%),
+                var(--bg);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a { color: inherit; }
+
+        .page {
+            width: min(1120px, 92%);
+            margin: auto;
+            padding: 24px 0 55px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(85, 234, 255, .4));
+        }
+
+        .brand strong {
+            display: block;
+            font-size: .95rem;
+            letter-spacing: 2px;
+        }
+
+        .brand small {
+            display: block;
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: .68rem;
+            letter-spacing: 1.5px;
+        }
+
+        .home-link {
+            padding: 10px 15px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        .home-link:hover,
+        .home-link:focus-visible {
+            border-color: var(--cyan);
+            background: rgba(85, 234, 255, .08);
+        }
+
+        .hero {
+            padding: 70px 0 43px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            color: var(--cyan);
+            font-size: .76rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 18px 0;
+            font-size: clamp(2.7rem, 7vw, 5.1rem);
+            line-height: 1.05;
+            letter-spacing: -2px;
+        }
+
+        .gradient {
+            color: var(--cyan);
+            text-shadow: 0 0 25px rgba(85, 234, 255, .2);
+        }
+
+        .hero p {
+            max-width: 690px;
+            margin: auto;
+            color: var(--muted);
+            font-size: 1.03rem;
+            line-height: 1.8;
+        }
+
+        .project-count {
+            display: inline-block;
+            margin-top: 22px;
+            padding: 9px 14px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: #d8e7ff;
+            background: rgba(255, 255, 255, .025);
+            font-size: .8rem;
+        }
+
+        .section-heading {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: end;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: clamp(1.45rem, 4vw, 2rem);
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--muted);
+            font-size: .85rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 300px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--panel);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .14);
+            transition: transform .25s ease, border-color .25s ease;
+        }
+
+        .project-card::before {
+            position: absolute;
+            top: 0;
+            left: 22px;
+            right: 22px;
+            height: 1px;
+            content: "";
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+            opacity: .65;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(85, 234, 255, .5);
+        }
+
+        .card-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .project-icon {
+            display: grid;
+            place-items: center;
+            width: 52px;
+            height: 52px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: rgba(85, 234, 255, .07);
+            font-size: 1.55rem;
+        }
+
+        .status {
+            padding: 6px 9px;
+            border-radius: 8px;
+            background: rgba(85, 234, 255, .09);
+            color: var(--cyan);
+            font-size: .68rem;
+            font-weight: bold;
+            letter-spacing: .5px;
+        }
+
+        .status.planned {
+            color: #c5b5ff;
+            background: rgba(172, 145, 255, .12);
+        }
+
+        .project-card h3 {
+            margin: 0 0 11px;
+            font-size: 1.35rem;
+        }
+
+        .project-card > p {
+            margin: 0;
+            color: var(--muted);
+            font-size: .92rem;
+            line-height: 1.8;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 18px 0 22px;
+        }
+
+        .tag {
+            padding: 6px 9px;
+            border: 1px solid rgba(255, 255, 255, .09);
+            border-radius: 7px;
+            color: #d8e6ff;
+            font-size: .73rem;
+        }
+
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 4px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 13px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--cyan);
+            font-size: .83rem;
+            text-decoration: none;
+            transition: background .2s ease;
+        }
+
+        .project-link:hover,
+        .project-link:focus-visible {
+            background: rgba(85, 234, 255, .09);
+        }
+
+        .project-link.primary {
+            border-color: rgba(85, 234, 255, .45);
+            background: rgba(85, 234, 255, .08);
+        }
+
+        .roadmap {
+            margin-top: 28px;
+            padding: 27px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: linear-gradient(120deg, rgba(18, 37, 67, .75), rgba(31, 19, 58, .6));
+        }
+
+        .roadmap h2 { margin: 0 0 10px; }
+
+        .roadmap > p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        .roadmap-list {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .roadmap-item {
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            background: rgba(0, 0, 0, .12);
+        }
+
+        .roadmap-item span {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--cyan);
+            font-size: .72rem;
+            letter-spacing: 1px;
+        }
+
+        .roadmap-item strong { font-size: .9rem; }
+
+        .bottom {
+            margin-top: 30px;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            text-align: center;
+            font-size: .83rem;
+            line-height: 1.8;
+        }
+
+        .bottom a {
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        @media (max-width: 720px) {
+            .projects-grid { grid-template-columns: 1fr; }
+            .roadmap-list { grid-template-columns: 1fr; }
+            .hero { padding-top: 48px; }
+            .project-card { min-height: 0; }
+        }
+
+        @media (max-width: 400px) {
+            .brand img { width: 36px; height: 36px; }
+            .brand strong { font-size: .8rem; letter-spacing: 1px; }
+            .home-link { padding: 9px 11px; font-size: .85rem; }
+            .project-card { padding: 20px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+        <header class="topbar">
+            <a class="brand" href="index.html" aria-label="VISHESH.CSE homepage">
+                <img src="assets/VC-logo.png" alt="VC logo">
+                <span>
+                    <strong>VISHESH.CSE</strong>
+                    <small>IDEAS INTO PROJECTS</small>
+                </span>
+            </a>
+            <a class="home-link" href="index.html">← Home</a>
+        </header>
+
+        <section class="hero">
+            <span class="eyebrow">Build · Learn · Improve</span>
+            <h1>My <span class="gradient">Projects</span></h1>
+            <p>
+                Every project is a place to turn curiosity into practical
+                experience. Explore my programming practice, personal website,
+                and ongoing experiments in voice assistants and AI.
+            </p>
+            <span class="project-count">A growing collection of work</span>
+        </section>
+
+        <section aria-labelledby="projects-heading">
+            <div class="section-heading">
+                <h2 id="projects-heading">Project universe</h2>
+                <p>Current work and learning projects</p>
+            </div>
+
+            <div class="projects-grid">
+                <article class="project-card">
+                    <div class="card-head">
+                        <div class="project-icon" aria-hidden="true">🧠</div>
+                        <span class="status">IN DEVELOPMENT</span>
+                    </div>
+                    <h3>Pragya</h3>
+                    <p>
+                        A local Windows voice-assistant project exploring wake-word
+                        recognition, speech input and output, desktop commands,
+                        and a custom interface. The long-term goal is to expand
+                        it step by step while learning the underlying technology.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Voice Assistant</span>
+                        <span class="tag">PySide6</span>
+                        <span class="tag">Ollama</span>
+                    </div>
+                    <div class="project-actions">
+                        <a class="project-link primary"
+                           href="https://github.com/vishesh-cse/Pragya"
+                           target="_blank" rel="noopener noreferrer">
+                            View repository ↗
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="card-head">
+                        <div class="project-icon" aria-hidden="true">🌌</div>
+                        <span class="status">LIVE WEBSITE</span>
+                    </div>
+                    <h3>Personal Portfolio</h3>
+                    <p>
+                        A cinematic personal website built to introduce my
+                        learning journey, projects, skills, and achievements.
+                        It uses a dark visual theme and custom interactive
+                        elements as I learn front-end development.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">GitHub Pages</span>
+                    </div>
+                    <div class="project-actions">
+                        <a class="project-link primary"
+                           href="https://vishesh-cse.github.io/vishesh-portfolio/"
+                           target="_blank" rel="noopener noreferrer">
+                            Open live site ↗
+                        </a>
+                        <a class="project-link"
+                           href="https://github.com/vishesh-cse/vishesh-portfolio"
+                           target="_blank" rel="noopener noreferrer">
+                            Source code ↗
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="card-head">
+                        <div class="project-icon" aria-hidden="true">💻</div>
+                        <span class="status">PRACTISING</span>
+                    </div>
+                    <h3>C Programming Practice</h3>
+                    <p>
+                        A collection of beginner C programs created while
+                        developing programming fundamentals, including
+                        calculations, conditional logic, even-or-odd checks,
+                        swapping values, and simple calculators.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">C</span>
+                        <span class="tag">Logic Building</span>
+                        <span class="tag">Beginner Programs</span>
+                    </div>
+                    <div class="project-actions">
+                        <a class="project-link primary"
+                           href="https://github.com/vishesh-cse/c-programming-practice"
+                           target="_blank" rel="noopener noreferrer">
+                            View repository ↗
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="card-head">
+                        <div class="project-icon" aria-hidden="true">🎓</div>
+                        <span class="status planned">PLANNED</span>
+                    </div>
+                    <h3>Campus Smart Assistant</h3>
+                    <p>
+                        A planned student-focused web app concept for organising
+                        attendance, estimating CGPA, tracking assignment
+                        reminders, and offering a simple help desk. This is
+                        a future build, not a completed product.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Web Development</span>
+                        <span class="tag">Student Productivity</span>
+                        <span class="tag">Future Build</span>
+                    </div>
+                    <div class="project-actions">
+                        <a class="project-link" href="contact.html">
+                            Connect with me →
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="roadmap" aria-labelledby="roadmap-heading">
+            <h2 id="roadmap-heading">How I build</h2>
+            <p>
+                I focus on understanding each step instead of rushing to a
+                finished result. The goal is to make projects more reliable,
+                document what I learn, and keep improving the code.
+            </p>
+
+            <div class="roadmap-list">
+                <div class="roadmap-item">
+                    <span>01 / FOUNDATION</span>
+                    <strong>Learn the concepts</strong>
+                </div>
+                <div class="roadmap-item">
+                    <span>02 / IMPLEMENTATION</span>
+                    <strong>Build and test</strong>
+                </div>
+                <div class="roadmap-item">
+                    <span>03 / NEXT ITERATION</span>
+                    <strong>Improve and document</strong>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bottom">
+            <p>Small projects. Real learning. Bigger ideas ahead.</p>
+            <a href="skills.html">Explore my skills →</a>
+            &nbsp; · &nbsp;
+            <a href="achievements.html">View achievements →</a>
+            &nbsp; · &nbsp;
+            <a href="contact.html">Contact →</a>
+        </footer>
+    </main>
+</body>
+</html>

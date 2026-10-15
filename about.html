@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080d1c">
+    <meta name="description" content="Learn about Vishesh, a first-year computer science student exploring programming, AI, and personal projects.">
+    <title>About | Vishesh.CSE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .about-page {
+            min-height: 100vh;
+            min-height: 100svh;
+            overflow: hidden;
+            position: relative;
+            isolation: isolate;
+            background:
+                radial-gradient(ellipse at 80% 0%, rgba(37, 110, 190, .19), transparent 40%),
+                radial-gradient(ellipse at 10% 60%, rgba(91, 62, 180, .12), transparent 40%),
+                #080d1c;
+            color: #edf5ff;
+        }
+
+        .about-page::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: .24;
+            background-image:
+                linear-gradient(rgba(139,233,255,.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139,233,255,.05) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: linear-gradient(to bottom, black, transparent 85%);
+        }
+
+        .about-page .page-top {
+            width: min(1120px, calc(100% - 40px));
+            margin: auto;
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .about-page .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: #effaff;
+            text-decoration: none;
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: 700;
+            letter-spacing: .12em;
+        }
+
+        .about-page .brand img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 12px rgba(0,220,255,.35));
+        }
+
+        .about-page .home-link {
+            color: #a8eefa;
+            text-decoration: none;
+            border: 1px solid rgba(139,233,255,.22);
+            background: rgba(10,20,40,.7);
+            border-radius: 12px;
+            padding: 10px 15px;
+            transition: background .2s, border-color .2s;
+        }
+
+        .about-page .home-link:hover,
+        .about-page .home-link:focus-visible {
+            background: rgba(139,233,255,.12);
+            border-color: rgba(139,233,255,.6);
+        }
+
+        .about-page .about-container {
+            width: min(1120px, calc(100% - 40px));
+            margin: auto;
+            padding: 76px 0 56px;
+        }
+
+        .about-page .section-label {
+            color: #8be9ff;
+            font: 600 11px/1.5 monospace;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+        }
+
+        .about-page .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(250px, .8fr);
+            gap: 36px;
+            align-items: center;
+        }
+
+        .about-page h1,
+        .about-page h2,
+        .about-page h3 {
+            font-family: "Space Grotesk", sans-serif;
+        }
+
+        .about-page h1 {
+            margin: 18px 0;
+            font-size: clamp(42px, 6vw, 76px);
+            line-height: 1.02;
+            letter-spacing: -.055em;
+        }
+
+        .about-page .gradient-title {
+            background: linear-gradient(100deg, #fff, #8be9ff 55%, #b8a6ff);
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .about-page .intro {
+            max-width: 640px;
+            color: #b9c8df;
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .about-page .status-card,
+        .about-page .info-card,
+        .about-page .timeline-card {
+            border: 1px solid rgba(139,233,255,.16);
+            border-radius: 20px;
+            background: linear-gradient(145deg, rgba(20,34,59,.83), rgba(9,16,32,.82));
+            box-shadow: 0 18px 50px rgba(0,0,0,.16);
+        }
+
+        .about-page .status-card {
+            padding: 24px;
+        }
+
+        .about-page .card-topline {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            color: #9bb0ca;
+            font: 11px monospace;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .about-page .status-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            margin-right: 7px;
+            border-radius: 50%;
+            background: #6af0c2;
+            box-shadow: 0 0 12px rgba(106,240,194,.8);
+        }
+
+        .about-page .monogram {
+            display: grid;
+            place-items: center;
+            width: 100px;
+            height: 100px;
+            margin: 30px auto 20px;
+            border: 1px solid rgba(139,233,255,.45);
+            border-radius: 28px;
+            color: #d7fbff;
+            font: 700 34px "Space Grotesk", sans-serif;
+            background: radial-gradient(circle, rgba(0,208,255,.2), rgba(89,69,190,.1));
+            box-shadow: 0 0 40px rgba(0,190,255,.12), inset 0 0 24px rgba(0,190,255,.08);
+        }
+
+        .about-page .status-card h2 {
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .about-page .status-card > p {
+            margin-top: 8px;
+            text-align: center;
+            color: #9fb1cc;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .about-page .status-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .about-page .status-tags span {
+            padding: 7px 10px;
+            border-radius: 9px;
+            color: #bceef8;
+            background: rgba(139,233,255,.08);
+            border: 1px solid rgba(139,233,255,.13);
+            font-size: 11px;
+        }
+
+        .about-page .section-heading {
+            margin-bottom: 22px;
+        }
+
+        .about-page .section-heading h2 {
+            margin-top: 9px;
+            font-size: clamp(25px, 3vw, 36px);
+            letter-spacing: -.035em;
+        }
+
+        .about-page .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 68px;
+        }
+
+        .about-page .info-card {
+            padding: 23px;
+            transition: transform .2s, border-color .2s;
+        }
+
+        .about-page .info-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(139,233,255,.42);
+        }
+
+        .about-page .card-icon {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            margin-bottom: 20px;
+            border-radius: 13px;
+            border: 1px solid rgba(139,233,255,.2);
+            background: rgba(139,233,255,.08);
+            color: #8be9ff;
+            font-size: 19px;
+        }
+
+        .about-page .info-card h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .about-page .info-card p {
+            color: #aebdd4;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .about-page .journey-section {
+            margin-top: 68px;
+        }
+
+        .about-page .timeline {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .about-page .timeline-card {
+            padding: 22px;
+        }
+
+        .about-page .timeline-card .step {
+            color: #8be9ff;
+            font: 12px monospace;
+            letter-spacing: .12em;
+        }
+
+        .about-page .timeline-card h3 {
+            margin: 12px 0 8px;
+            font-size: 18px;
+        }
+
+        .about-page .timeline-card p {
+            color: #aebdd4;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .about-page .closing-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            margin-top: 56px;
+            padding: 28px;
+            border: 1px solid rgba(139,233,255,.2);
+            border-radius: 20px;
+            background: linear-gradient(100deg, rgba(0,180,220,.09), rgba(110,80,210,.09));
+        }
+
+        .about-page .closing-panel h2 {
+            margin-bottom: 8px;
+            font-size: 23px;
+        }
+
+        .about-page .closing-panel p {
+            color: #b0c0d8;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .about-page .projects-link {
+            flex-shrink: 0;
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: #07101d;
+            background: #8be9ff;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .about-page .projects-link:hover,
+        .about-page .projects-link:focus-visible {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(139,233,255,.25);
+        }
+
+        .about-page .page-footer {
+            width: min(1120px, calc(100% - 40px));
+            margin: auto;
+            padding: 22px 0 28px;
+            border-top: 1px solid rgba(139,233,255,.1);
+            color: #8192ad;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        @media (max-width: 800px) {
+            .about-page .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-page .status-card {
+                max-width: 480px;
+            }
+
+            .about-page .dashboard-grid,
+            .about-page .timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .about-page .dashboard-grid,
+            .about-page .journey-section {
+                margin-top: 48px;
+            }
+
+            .about-page .closing-panel {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-page .page-top,
+            .about-page .about-container,
+            .about-page .page-footer {
+                width: calc(100% - 32px);
+            }
+
+            .about-page .page-top {
+                padding-top: 18px;
+            }
+
+            .about-page .brand {
+                gap: 8px;
+                font-size: 12px;
+            }
+
+            .about-page .brand img {
+                width: 36px;
+                height: 36px;
+            }
+
+            .about-page .home-link {
+                padding: 9px 11px;
+                font-size: 13px;
+            }
+
+            .about-page .about-container {
+                padding-top: 54px;
+            }
+
+            .about-page .intro {
+                font-size: 15px;
+            }
+
+            .about-page .status-card,
+            .about-page .info-card,
+            .about-page .timeline-card {
+                padding: 19px;
+            }
+
+            .about-page .closing-panel {
+                padding: 21px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .about-page *,
+            .about-page *::before,
+            .about-page *::after {
+                scroll-behavior: auto !important;
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<main class="about-page">
+    <header class="page-top">
+        <a class="brand" href="index.html" aria-label="Vishesh.CSE home">
+            <img src="assets/VC-logo.png" alt="">
+            <span>VISHESH.CSE</span>
+        </a>
+
+        <a class="home-link" href="index.html">← Home</a>
+    </header>
+
+    <div class="about-container">
+        <section class="hero-grid" aria-labelledby="about-title">
+            <div>
+                <p class="section-label">01 / ABOUT ME</p>
+                <h1 id="about-title">
+                    Learning the craft.<br>
+                    <span class="gradient-title">Building what's next.</span>
+                </h1>
+                <p class="intro">
+                    I'm Vishesh, a first-year B.Tech Computer Science and
+                    Engineering student. I'm developing my foundations in
+                    programming while exploring artificial intelligence,
+                    software projects, and ways to turn ideas into useful tools.
+                    I'm at the beginning of the journey, and this site is a
+                    record of what I learn and build along the way.
+                </p>
+            </div>
+
+            <aside class="status-card" aria-label="Current profile">
+                <div class="card-topline">
+                    <span>PROFILE / 001</span>
+                    <span><i class="status-dot"></i>IN PROGRESS</span>
+                </div>
+
+                <div class="monogram" aria-hidden="true">VC</div>
+
+                <h2>Vishesh Chaudhary</h2>
+                <p>B.Tech CSE · First Year</p>
+
+                <div class="status-tags">
+                    <span>Learning C</span>
+                    <span>Exploring AI</span>
+                    <span>Building Pragya</span>
+                </div>
+            </aside>
+        </section>
+
+        <section class="dashboard-grid" aria-label="My focus areas">
+            <article class="info-card">
+                <div class="card-icon" aria-hidden="true">&lt;/&gt;</div>
+                <h3>Learning by building</h3>
+                <p>
+                    I'm practising programming fundamentals and working on
+                    small projects to strengthen my problem-solving skills
+                    through hands-on experience.
+                </p>
+            </article>
+
+            <article class="info-card">
+                <div class="card-icon" aria-hidden="true">⌘</div>
+                <h3>Exploring AI</h3>
+                <p>
+                    Artificial intelligence is an area I'm curious about.
+                    My longer-term ambition is to understand language models
+                    deeply and explore how one could be built.
+                </p>
+            </article>
+
+            <article class="info-card">
+                <div class="card-icon" aria-hidden="true">✦</div>
+                <h3>Thinking creatively</h3>
+                <p>
+                    I enjoy combining technical learning with creative ideas,
+                    personal writing, and experiments that could become
+                    practical tools.
+                </p>
+            </article>
+        </section>
+
+        <section class="journey-section" aria-labelledby="journey-title">
+            <div class="section-heading">
+                <p class="section-label">02 / THE JOURNEY</p>
+                <h2 id="journey-title">Where I am, where I'm going</h2>
+            </div>
+
+            <div class="timeline">
+                <article class="timeline-card">
+                    <span class="step">PHASE 01</span>
+                    <h3>Build the foundations</h3>
+                    <p>
+                        Focus on C programming, core computer science
+                        concepts, problem-solving, and consistent practice.
+                    </p>
+                </article>
+
+                <article class="timeline-card">
+                    <span class="step">PHASE 02</span>
+                    <h3>Turn ideas into projects</h3>
+                    <p>
+                        Keep developing my portfolio and Pragya, my personal
+                        assistant project, while learning from each iteration.
+                    </p>
+                </article>
+
+                <article class="timeline-card">
+                    <span class="step">PHASE 03</span>
+                    <h3>Explore deeper AI</h3>
+                    <p>
+                        Work toward stronger AI and machine-learning
+                        knowledge, with the long-term goal of exploring
+                        language-model development.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="closing-panel" aria-label="Explore my work">
+            <div>
+                <h2>Still learning. Always building.</h2>
+                <p>
+                    This is an evolving journey, not a finished story.
+                    The projects page is where I document what I'm making.
+                </p>
+            </div>
+
+            <a class="projects-link" href="projects.html">Explore projects ↗</a>
+        </section>
+    </div>
+
+    <footer class="page-footer">
+        <p>© 2026 Vishesh Chaudhary · Learn. Build. Evolve.</p>
+    </footer>
+</main>
+</body>
+</html>

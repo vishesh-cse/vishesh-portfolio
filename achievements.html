@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070b18">
+    <meta name="description" content="Certificates and learning milestones from Vishesh's computer science journey.">
+    <title>Achievements | VISHESH.CSE</title>
+
+    <link rel="icon" href="assets/v-logo.png">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .achievements-page {
+            --a-bg: #070b18;
+            --a-panel: rgba(17, 26, 48, .78);
+            --a-line: rgba(137, 166, 220, .19);
+            --a-cyan: #70e7ff;
+            --a-violet: #a99aff;
+            min-height: 100vh;
+            padding: 28px clamp(18px, 5vw, 72px) 48px;
+            color: #eef3ff;
+            background:
+                radial-gradient(ellipse at 12% 5%, rgba(47, 104, 180, .20), transparent 38%),
+                radial-gradient(ellipse at 92% 36%, rgba(112, 75, 205, .13), transparent 34%),
+                var(--a-bg);
+            font-family: 'Inter', sans-serif;
+            isolation: isolate;
+            position: relative;
+        }
+
+        .achievements-page *,
+        .achievements-page *::before,
+        .achievements-page *::after {
+            box-sizing: border-box;
+        }
+
+        .achievements-page::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: .22;
+            background-image:
+                linear-gradient(rgba(130, 165, 220, .08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(130, 165, 220, .08) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: linear-gradient(to bottom, black, transparent 85%);
+        }
+
+        .achievements-page a {
+            color: inherit;
+        }
+
+        .a-topbar {
+            max-width: 1180px;
+            margin: 0 auto 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .a-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font: 700 14px 'Space Grotesk', sans-serif;
+            letter-spacing: .13em;
+        }
+
+        .a-brand img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 12px rgba(112, 231, 255, .38));
+        }
+
+        .a-home {
+            text-decoration: none;
+            border: 1px solid var(--a-line);
+            background: rgba(255, 255, 255, .035);
+            padding: 11px 17px;
+            border-radius: 999px;
+            color: #dce6ff;
+            font-size: 13px;
+            transition: border-color .2s, background .2s;
+        }
+
+        .a-home:hover {
+            border-color: var(--a-cyan);
+            background: rgba(112, 231, 255, .08);
+        }
+
+        .a-container {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        .a-eyebrow {
+            color: var(--a-cyan);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+        }
+
+        .a-heading {
+            max-width: 760px;
+            margin: 17px 0 16px;
+            font: 600 clamp(38px, 6vw, 70px)/1.04 'Space Grotesk', sans-serif;
+            letter-spacing: -.055em;
+        }
+
+        .a-heading span {
+            color: transparent;
+            background: linear-gradient(100deg, var(--a-cyan), var(--a-violet));
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .a-intro {
+            max-width: 650px;
+            color: #aab7d0;
+            font-size: 15px;
+            line-height: 1.85;
+        }
+
+        .a-summary {
+            margin: 34px 0 56px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .a-stat {
+            min-width: 145px;
+            padding: 15px 18px;
+            border: 1px solid var(--a-line);
+            background: rgba(255, 255, 255, .025);
+            border-radius: 14px;
+        }
+
+        .a-stat strong {
+            display: block;
+            font: 600 23px 'Space Grotesk', sans-serif;
+            color: #f1f5ff;
+        }
+
+        .a-stat span {
+            display: block;
+            margin-top: 5px;
+            font-size: 11px;
+            color: #9cabc5;
+            letter-spacing: .04em;
+        }
+
+        .a-section-title {
+            margin: 0 0 19px;
+            font: 600 22px 'Space Grotesk', sans-serif;
+        }
+
+        .a-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .a-card {
+            min-width: 0;
+            padding: clamp(21px, 3vw, 30px);
+            border: 1px solid var(--a-line);
+            border-radius: 22px;
+            background: linear-gradient(145deg, var(--a-panel), rgba(10, 16, 32, .88));
+            box-shadow: 0 18px 55px rgba(0, 0, 0, .16);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: transform .25s ease, border-color .25s ease;
+        }
+
+        .a-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(112, 231, 255, .48);
+        }
+
+        .a-card-top {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 27px;
+        }
+
+        .a-mark {
+            width: 53px;
+            height: 53px;
+            display: grid;
+            place-items: center;
+            border-radius: 15px;
+            color: var(--a-cyan);
+            background: rgba(112, 231, 255, .08);
+            border: 1px solid rgba(112, 231, 255, .20);
+            font: 700 16px 'Space Grotesk', sans-serif;
+        }
+
+        .a-card:nth-child(2) .a-mark {
+            color: var(--a-violet);
+            background: rgba(169, 154, 255, .08);
+            border-color: rgba(169, 154, 255, .24);
+        }
+
+        .a-type {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #a9b6ce;
+            border: 1px solid var(--a-line);
+            padding: 8px 10px;
+            border-radius: 999px;
+        }
+
+        .a-issuer {
+            color: var(--a-cyan);
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .a-card h3 {
+            margin: 0 0 12px;
+            font: 600 clamp(21px, 2.5vw, 27px)/1.25 'Space Grotesk', sans-serif;
+            letter-spacing: -.025em;
+        }
+
+        .a-card p {
+            margin: 0;
+            color: #aab7d0;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .a-date {
+            color: #d0d9eb;
+            font-size: 12px;
+            margin-top: 18px;
+        }
+
+        .a-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin: 19px 0 25px;
+        }
+
+        .a-tags span {
+            padding: 7px 9px;
+            border-radius: 7px;
+            background: rgba(255, 255, 255, .045);
+            border: 1px solid rgba(255, 255, 255, .07);
+            color: #bdc9df;
+            font-size: 10px;
+        }
+
+        .a-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .a-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(112, 231, 255, .35);
+            background: rgba(112, 231, 255, .09);
+            color: #dffaff !important;
+            transition: background .2s, border-color .2s;
+        }
+
+        .a-button:hover {
+            background: rgba(112, 231, 255, .17);
+            border-color: var(--a-cyan);
+        }
+
+        .a-button.secondary {
+            color: #d2caff !important;
+            border-color: rgba(169, 154, 255, .32);
+            background: rgba(169, 154, 255, .07);
+        }
+
+        .a-button.secondary:hover {
+            background: rgba(169, 154, 255, .15);
+        }
+
+        .a-note {
+            margin-top: 42px;
+            padding: 22px 24px;
+            border-left: 2px solid var(--a-violet);
+            border-radius: 0 14px 14px 0;
+            background: rgba(169, 154, 255, .055);
+            color: #aebbd2;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .a-note strong {
+            color: #e9e5ff;
+        }
+
+        .a-footer {
+            max-width: 1180px;
+            margin: 58px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid var(--a-line);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+            color: #8492ad;
+            font-size: 11px;
+        }
+
+        .a-footer a {
+            color: var(--a-cyan);
+            text-decoration: none;
+        }
+
+        .a-home:focus-visible,
+        .a-button:focus-visible,
+        .a-brand:focus-visible,
+        .a-footer a:focus-visible {
+            outline: 2px solid var(--a-cyan);
+            outline-offset: 4px;
+        }
+
+        @media (max-width: 720px) {
+            .achievements-page {
+                padding: 20px 17px 32px;
+            }
+
+            .a-topbar {
+                margin-bottom: 53px;
+            }
+
+            .a-brand {
+                font-size: 12px;
+                letter-spacing: .08em;
+            }
+
+            .a-brand img {
+                width: 36px;
+                height: 36px;
+            }
+
+            .a-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .a-summary {
+                margin-bottom: 43px;
+            }
+
+            .a-stat {
+                flex: 1;
+                min-width: 120px;
+            }
+
+            .a-footer {
+                margin-top: 40px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .achievements-page *,
+            .achievements-page *::before,
+            .achievements-page *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
+            }
+
+            .a-card:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<main class="achievements-page">
+    <header class="a-topbar">
+        <a class="a-brand" href="index.html" aria-label="VISHESH.CSE home">
+            <img src="assets/VC-logo.png" alt="">
+            <span>VISHESH.CSE</span>
+        </a>
+        <a class="a-home" href="index.html">← Back to Home</a>
+    </header>
+
+    <div class="a-container">
+        <section aria-labelledby="a-title">
+            <div class="a-eyebrow">01 / Learning milestones</div>
+            <h1 class="a-heading" id="a-title">
+                Progress, <span>not just badges.</span>
+            </h1>
+            <p class="a-intro">
+                Every certificate represents time spent learning and experimenting.
+                This page documents completed learning experiences as I build my
+                foundations in computer science and artificial intelligence.
+            </p>
+
+            <div class="a-summary" aria-label="Achievement summary">
+                <div class="a-stat">
+                    <strong>02</strong>
+                    <span>Certificates / simulations</span>
+                </div>
+                <div class="a-stat">
+                    <strong>AI + GenAI</strong>
+                    <span>Learning areas</span>
+                </div>
+                <div class="a-stat">
+                    <strong>In progress</strong>
+                    <span>My CSE journey</span>
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="a-certificates">
+            <h2 class="a-section-title" id="a-certificates">
+                Certificates &amp; simulations
+            </h2>
+
+            <div class="a-grid">
+                <article class="a-card">
+                    <div class="a-card-top">
+                        <div class="a-mark" aria-hidden="true">IBM</div>
+                        <span class="a-type">AI learning</span>
+                    </div>
+
+                    <div class="a-issuer">IBM SkillsBuild</div>
+                    <h3>Getting Started with Artificial Intelligence</h3>
+                    <p>
+                        A completed introductory AI learning credential from
+                        IBM SkillsBuild.
+                    </p>
+                    <div class="a-date">Issued: 24 August 2026</div>
+
+                    <div class="a-tags" aria-label="Topics">
+                        <span>Artificial Intelligence</span>
+                        <span>AI Foundations</span>
+                    </div>
+
+                    <div class="a-actions">
+                        <a class="a-button"
+                           href="assets/ibm-ai-certificate.pdf"
+                           target="_blank" rel="noopener noreferrer">
+                            View Certificate ↗
+                        </a>
+                        <a class="a-button secondary"
+                           href="https://www.credly.com/badges/da0de758-2225-436e-8414-354cb6cb9453"
+                           target="_blank" rel="noopener noreferrer">
+                            Verify on Credly ↗
+                        </a>
+                    </div>
+                </article>
+
+                <article class="a-card">
+                    <div class="a-card-top">
+                        <div class="a-mark" aria-hidden="true">T</div>
+                        <span class="a-type">Job simulation</span>
+                    </div>
+
+                    <div class="a-issuer">Forage · Tata</div>
+                    <h3>GenAI Powered Data Analytics Job Simulation</h3>
+                    <p>
+                        Completed practical tasks involving exploratory data
+                        analysis, risk profiling, AI-based delinquency prediction,
+                        business reporting, and collections strategy.
+                    </p>
+                    <div class="a-date">Completed: 29 September 2026</div>
+
+                    <div class="a-tags" aria-label="Topics">
+                        <span>EDA &amp; Risk Profiling</span>
+                        <span>AI Applications</span>
+                        <span>Data Storytelling</span>
+                    </div>
+
+                    <div class="a-actions">
+                        <a class="a-button"
+                           href="assets/forage-genai-certificate.pdf"
+                           target="_blank" rel="noopener noreferrer">
+                            View Certificate ↗
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <aside class="a-note">
+            <strong>What comes next?</strong>
+            <br>
+            I'm continuing to develop my C programming skills and work on
+            personal projects, including Pragya. These are ongoing learning
+            efforts, not completed awards or certifications.
+        </aside>
+    </div>
+
+    <footer class="a-footer">
+        <span>© 2026 VISHESH.CSE · Built while learning.</span>
+        <a href="projects.html">Explore my projects →</a>
+    </footer>
+</main>
+</body>
+</html>

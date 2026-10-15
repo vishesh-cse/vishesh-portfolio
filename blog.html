@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070b18">
+    <meta name="description" content="Learning notes, coding experiments, AI explorations, and project updates from VISHESH.CSE.">
+    <title>Learning Journal | VISHESH.CSE</title>
+
+    <link rel="icon" href="assets/v-logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .blog-page {
+            --b-bg: #070b18;
+            --b-panel: rgba(17, 26, 48, .78);
+            --b-line: rgba(137, 166, 220, .19);
+            --b-cyan: #70e7ff;
+            --b-violet: #a99aff;
+            min-height: 100vh;
+            padding: 28px clamp(18px, 5vw, 72px) 48px;
+            color: #eef3ff;
+            background:
+                radial-gradient(ellipse at 12% 5%, rgba(47, 104, 180, .20), transparent 38%),
+                radial-gradient(ellipse at 92% 36%, rgba(112, 75, 205, .13), transparent 34%),
+                var(--b-bg);
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .blog-page *,
+        .blog-page *::before,
+        .blog-page *::after {
+            box-sizing: border-box;
+        }
+
+        .blog-page::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: .22;
+            background-image:
+                linear-gradient(rgba(130, 165, 220, .08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(130, 165, 220, .08) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: linear-gradient(to bottom, black, transparent 85%);
+        }
+
+        .blog-page a {
+            color: inherit;
+        }
+
+        .b-topbar,
+        .b-container,
+        .b-footer {
+            max-width: 1180px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .b-topbar {
+            margin-bottom: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .b-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font: 700 14px 'Space Grotesk', sans-serif;
+            letter-spacing: .13em;
+        }
+
+        .b-brand img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 12px rgba(112, 231, 255, .38));
+        }
+
+        .b-home {
+            text-decoration: none;
+            border: 1px solid var(--b-line);
+            background: rgba(255, 255, 255, .035);
+            padding: 11px 17px;
+            border-radius: 999px;
+            font-size: 13px;
+            transition: border-color .2s, background .2s;
+        }
+
+        .b-home:hover {
+            border-color: var(--b-cyan);
+            background: rgba(112, 231, 255, .08);
+        }
+
+        .b-eyebrow {
+            color: var(--b-cyan);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+        }
+
+        .b-heading {
+            max-width: 800px;
+            margin: 17px 0 16px;
+            font: 600 clamp(40px, 6vw, 72px)/1.04 'Space Grotesk', sans-serif;
+            letter-spacing: -.055em;
+        }
+
+        .b-heading span {
+            color: transparent;
+            background: linear-gradient(100deg, var(--b-cyan), var(--b-violet));
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .b-intro {
+            max-width: 660px;
+            color: #aab7d0;
+            font-size: 15px;
+            line-height: 1.85;
+        }
+
+        .b-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 23px;
+            padding: 10px 13px;
+            border: 1px solid var(--b-line);
+            border-radius: 999px;
+            color: #c5d1e7;
+            background: rgba(255, 255, 255, .025);
+            font-size: 11px;
+        }
+
+        .b-status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #83edb4;
+            box-shadow: 0 0 12px rgba(131, 237, 180, .6);
+        }
+
+        .b-section {
+            margin-top: 57px;
+        }
+
+        .b-section-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: end;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 19px;
+        }
+
+        .b-section-title {
+            margin: 0;
+            font: 600 23px 'Space Grotesk', sans-serif;
+        }
+
+        .b-section-note {
+            color: #8492ad;
+            font-size: 11px;
+        }
+
+        .b-featured {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(24px, 4vw, 42px);
+            border: 1px solid rgba(112, 231, 255, .25);
+            border-radius: 24px;
+            background:
+                radial-gradient(ellipse at 90% 20%, rgba(123, 111, 255, .16), transparent 40%),
+                linear-gradient(140deg, rgba(19, 37, 65, .94), rgba(10, 16, 32, .94));
+        }
+
+        .b-featured::after {
+            content: "</>";
+            position: absolute;
+            right: 30px;
+            bottom: -28px;
+            color: rgba(112, 231, 255, .055);
+            font: 700 clamp(100px, 18vw, 210px) 'Space Grotesk', sans-serif;
+            pointer-events: none;
+        }
+
+        .b-featured-content {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+        }
+
+        .b-label {
+            display: inline-block;
+            padding: 8px 10px;
+            border-radius: 7px;
+            border: 1px solid rgba(112, 231, 255, .22);
+            color: var(--b-cyan);
+            background: rgba(112, 231, 255, .07);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .b-featured h3 {
+            margin: 20px 0 13px;
+            font: 600 clamp(27px, 4vw, 40px)/1.2 'Space Grotesk', sans-serif;
+            letter-spacing: -.035em;
+        }
+
+        .b-featured p {
+            max-width: 610px;
+            color: #b1bfd7;
+            font-size: 14px;
+            line-height: 1.85;
+        }
+
+        .b-featured-meta {
+            margin-top: 23px;
+            color: #8f9fba;
+            font-size: 11px;
+        }
+
+        .b-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .b-card {
+            min-width: 0;
+            padding: 23px;
+            border: 1px solid var(--b-line);
+            border-radius: 19px;
+            background: linear-gradient(145deg, var(--b-panel), rgba(10, 16, 32, .88));
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: transform .25s ease, border-color .25s ease;
+        }
+
+        .b-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(112, 231, 255, .42);
+        }
+
+        .b-card-icon {
+            width: 45px;
+            height: 45px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 23px;
+            border-radius: 13px;
+            color: var(--b-cyan);
+            border: 1px solid rgba(112, 231, 255, .19);
+            background: rgba(112, 231, 255, .07);
+            font: 600 17px 'Space Grotesk', sans-serif;
+        }
+
+        .b-card:nth-child(even) .b-card-icon {
+            color: var(--b-violet);
+            border-color: rgba(169, 154, 255, .23);
+            background: rgba(169, 154, 255, .07);
+        }
+
+        .b-category {
+            color: var(--b-cyan);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .b-card h3 {
+            margin: 11px 0;
+            font: 600 21px/1.3 'Space Grotesk', sans-serif;
+        }
+
+        .b-card p {
+            margin: 0 0 21px;
+            color: #aab7d0;
+            font-size: 12px;
+            line-height: 1.85;
+        }
+
+        .b-card-bottom {
+            margin-top: auto;
+            padding-top: 15px;
+            width: 100%;
+            border-top: 1px solid var(--b-line);
+            color: #8e9db7;
+            font-size: 11px;
+        }
+
+        .b-journal-note {
+            margin-top: 34px;
+            padding: 22px 24px;
+            border-left: 2px solid var(--b-violet);
+            border-radius: 0 14px 14px 0;
+            background: rgba(169, 154, 255, .055);
+            color: #aebbd2;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .b-journal-note strong {
+            color: #e9e5ff;
+        }
+
+        .b-footer {
+            margin-top: 58px;
+            padding-top: 20px;
+            border-top: 1px solid var(--b-line);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+            color: #8492ad;
+            font-size: 11px;
+        }
+
+        .b-footer a {
+            color: var(--b-cyan);
+            text-decoration: none;
+        }
+
+        .b-home:focus-visible,
+        .b-brand:focus-visible,
+        .b-footer a:focus-visible {
+            outline: 2px solid var(--b-cyan);
+            outline-offset: 4px;
+        }
+
+        @media (max-width: 900px) {
+            .b-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .blog-page {
+                padding: 20px 17px 32px;
+            }
+
+            .b-topbar {
+                margin-bottom: 53px;
+            }
+
+            .b-brand {
+                font-size: 12px;
+                letter-spacing: .08em;
+            }
+
+            .b-brand img {
+                width: 36px;
+                height: 36px;
+            }
+
+            .b-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .b-section {
+                margin-top: 43px;
+            }
+
+            .b-featured::after {
+                right: 10px;
+                bottom: -10px;
+            }
+
+            .b-footer {
+                margin-top: 40px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .blog-page *,
+            .blog-page *::before,
+            .blog-page *::after {
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
+            }
+
+            .b-card:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<main class="blog-page">
+    <header class="b-topbar">
+        <a class="b-brand" href="index.html" aria-label="VISHESH.CSE home">
+            <img src="assets/VC-logo.png" alt="">
+            <span>VISHESH.CSE</span>
+        </a>
+        <a class="b-home" href="index.html">← Back to Home</a>
+    </header>
+
+    <div class="b-container">
+        <section aria-labelledby="b-title">
+            <div class="b-eyebrow">02 / Notes from the journey</div>
+            <h1 class="b-heading" id="b-title">
+                Learning out loud.<br>
+                <span>Building with purpose.</span>
+            </h1>
+            <p class="b-intro">
+                A personal journal for ideas, experiments, and lessons from my
+                journey through computer science. I document what I learn,
+                what I build, and what I still need to figure out.
+            </p>
+            <div class="b-status">
+                <span class="b-status-dot" aria-hidden="true"></span>
+                Learning journal · Posts are being developed
+            </div>
+        </section>
+
+        <section class="b-section" aria-labelledby="b-featured-title">
+            <div class="b-section-head">
+                <h2 class="b-section-title" id="b-featured-title">Featured note</h2>
+                <span class="b-section-note">A starting point</span>
+            </div>
+
+            <article class="b-featured">
+                <div class="b-featured-content">
+                    <span class="b-label">My journey</span>
+                    <h3>My Journey into Computer Science</h3>
+                    <p>
+                        Starting B.Tech CSE means learning to turn curiosity into
+                        practical skills. This journal will follow my progress
+                        with programming fundamentals, AI concepts, and personal
+                        projects, including the ongoing development of Pragya.
+                    </p>
+                    <div class="b-featured-meta">
+                        Introductory journal entry · Draft idea
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="b-section" aria-labelledby="b-notes-title">
+            <div class="b-section-head">
+                <h2 class="b-section-title" id="b-notes-title">Explore the journal</h2>
+                <span class="b-section-note">Topics I'm documenting</span>
+            </div>
+
+            <div class="b-grid">
+                <article class="b-card">
+                    <div class="b-card-icon" aria-hidden="true">&lt;/&gt;</div>
+                    <div class="b-category">Programming</div>
+                    <h3>Learning C, One Program at a Time</h3>
+                    <p>
+                        Notes on programming basics, problem-solving, and the
+                        small programs I practise while building a stronger
+                        foundation in C.
+                    </p>
+                    <div class="b-card-bottom">Planned learning note</div>
+                </article>
+
+                <article class="b-card">
+                    <div class="b-card-icon" aria-hidden="true">⌘</div>
+                    <div class="b-category">Developer tools</div>
+                    <h3>My First Steps with GitHub</h3>
+                    <p>
+                        A beginner's log of repositories, commits, README files,
+                        and the habits that help me track my coding progress.
+                    </p>
+                    <div class="b-card-bottom">Planned learning note</div>
+                </article>
+
+                <article class="b-card">
+                    <div class="b-card-icon" aria-hidden="true">P</div>
+                    <div class="b-category">Project journal</div>
+                    <h3>Building Pragya</h3>
+                    <p>
+                        Development notes about my local voice assistant,
+                        including experiments, debugging lessons, and the
+                        next improvements I plan to test.
+                    </p>
+                    <div class="b-card-bottom">Ongoing project · Planned post</div>
+                </article>
+
+                <article class="b-card">
+                    <div class="b-card-icon" aria-hidden="true">AI</div>
+                    <div class="b-category">Artificial intelligence</div>
+                    <h3>What I'm Learning About AI</h3>
+                    <p>
+                        Beginner-friendly reflections on AI concepts and
+                        lessons from my completed IBM SkillsBuild introductory
+                        AI learning credential.
+                    </p>
+                    <div class="b-card-bottom">Planned learning note</div>
+                </article>
+
+                <article class="b-card">
+                    <div class="b-card-icon" aria-hidden="true">↗</div>
+                    <div class="b-category">Applied learning</div>
+                    <h3>Lessons from a GenAI Data Analytics Simulation</h3>
+                    <p>
+                        Reflections on the Forage simulation tasks involving
+                        exploratory data analysis, risk profiling, prediction,
+                        reporting, and AI-driven collections strategy.
+                    </p>
+                    <div class="b-card-bottom">Planned reflection</div>
+                </article>
+
+                <article class="b-card">
+                    <div class="b-card-icon" aria-hidden="true">✦</div>
+                    <div class="b-category">Ideas &amp; creativity</div>
+                    <h3>From an Idea to a Working Project</h3>
+                    <p>
+                        Thoughts on breaking large ideas into small tasks,
+                        testing one change at a time, and learning from
+                        mistakes along the way.
+                    </p>
+                    <div class="b-card-bottom">Planned learning note</div>
+                </article>
+            </div>
+        </section>
+
+        <aside class="b-journal-note">
+            <strong>A note about this page</strong>
+            <br>
+            These cards describe topics I plan to write about. They are not
+            links to published articles yet. I'll add individual articles as
+            I write and review them.
+        </aside>
+    </div>
+
+    <footer class="b-footer">
+        <span>© 2026 VISHESH.CSE · Learning in public.</span>
+        <a href="projects.html">Explore my projects →</a>
+    </footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050816">
+    <meta name="description" content="Explore my programming, AI learning, tools, and professional skills as a first-year CSE student.">
+    <title>Skills | VISHESH.CSE</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --skill-bg: #050816;
+            --skill-panel: rgba(14, 23, 48, 0.78);
+            --skill-cyan: #55eaff;
+            --skill-violet: #a78bfa;
+            --skill-text: #edf4ff;
+            --skill-muted: #a6b4cc;
+            --skill-border: rgba(116, 197, 255, 0.19);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--skill-text);
+            background:
+                radial-gradient(ellipse at 15% 5%, rgba(32, 100, 190, .17), transparent 35%),
+                radial-gradient(ellipse at 90% 45%, rgba(125, 65, 210, .12), transparent 32%),
+                var(--skill-bg);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .skills-page {
+            width: min(1120px, 92%);
+            margin: auto;
+            padding: 24px 0 56px;
+        }
+
+        .skills-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 8px 0 28px;
+            border-bottom: 1px solid var(--skill-border);
+        }
+
+        .skills-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .skills-brand img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(85, 234, 255, .45));
+        }
+
+        .brand-name {
+            font-size: .95rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .brand-caption {
+            display: block;
+            margin-top: 5px;
+            color: var(--skill-muted);
+            font-size: .68rem;
+            letter-spacing: 1.5px;
+        }
+
+        .home-link {
+            padding: 10px 16px;
+            border: 1px solid var(--skill-border);
+            border-radius: 999px;
+            text-decoration: none;
+            color: var(--skill-cyan);
+            transition: background .2s ease, border-color .2s ease;
+        }
+
+        .home-link:hover,
+        .home-link:focus-visible {
+            background: rgba(85, 234, 255, .09);
+            border-color: var(--skill-cyan);
+        }
+
+        .skills-hero {
+            padding: 66px 0 38px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            color: var(--skill-cyan);
+            font-size: .76rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .skills-hero h1 {
+            margin: 17px 0;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            line-height: 1.05;
+            letter-spacing: -2px;
+        }
+
+        .gradient-text {
+            color: var(--skill-cyan);
+            text-shadow: 0 0 28px rgba(85, 234, 255, .18);
+        }
+
+        .skills-hero p {
+            max-width: 680px;
+            margin: 0 auto;
+            color: var(--skill-muted);
+            font-size: 1.04rem;
+            line-height: 1.8;
+        }
+
+        .status-strip {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .status-pill {
+            padding: 8px 13px;
+            border: 1px solid var(--skill-border);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .025);
+            color: #dceaff;
+            font-size: .78rem;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 28px 0 18px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: clamp(1.4rem, 4vw, 2rem);
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--skill-muted);
+            font-size: .88rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .skill-card {
+            position: relative;
+            overflow: hidden;
+            padding: 25px;
+            border: 1px solid var(--skill-border);
+            border-radius: 20px;
+            background: var(--skill-panel);
+            box-shadow: 0 14px 38px rgba(0, 0, 0, .13);
+            transition: transform .25s ease, border-color .25s ease;
+        }
+
+        .skill-card::before {
+            position: absolute;
+            top: 0;
+            left: 20px;
+            right: 20px;
+            height: 1px;
+            content: "";
+            background: linear-gradient(90deg, transparent, var(--skill-cyan), transparent);
+            opacity: .55;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(85, 234, 255, .48);
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .skill-icon {
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            width: 49px;
+            height: 49px;
+            border: 1px solid var(--skill-border);
+            border-radius: 14px;
+            background: rgba(85, 234, 255, .07);
+            font-size: 1.5rem;
+        }
+
+        .skill-card h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .card-kicker {
+            margin-top: 5px;
+            color: var(--skill-muted);
+            font-size: .75rem;
+        }
+
+        .skill-list {
+            display: grid;
+            gap: 12px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, .065);
+        }
+
+        .skill-item:last-child {
+            padding-bottom: 0;
+            border-bottom: 0;
+        }
+
+        .skill-name {
+            font-size: .91rem;
+            line-height: 1.5;
+        }
+
+        .skill-status {
+            flex-shrink: 0;
+            padding: 5px 8px;
+            border-radius: 7px;
+            background: rgba(85, 234, 255, .08);
+            color: var(--skill-cyan);
+            font-size: .67rem;
+            font-weight: 700;
+            letter-spacing: .3px;
+        }
+
+        .skill-status.learning {
+            background: rgba(167, 139, 250, .11);
+            color: #c5b5ff;
+        }
+
+        .skill-status.exploring {
+            background: rgba(255, 196, 112, .1);
+            color: #ffd08c;
+        }
+
+        .journey-panel {
+            margin-top: 25px;
+            padding: 27px;
+            border: 1px solid var(--skill-border);
+            border-radius: 20px;
+            background: linear-gradient(120deg, rgba(18, 37, 67, .8), rgba(27, 18, 55, .65));
+        }
+
+        .journey-panel h2 {
+            margin: 0 0 10px;
+        }
+
+        .journey-panel > p {
+            margin: 0;
+            color: var(--skill-muted);
+            line-height: 1.75;
+        }
+
+        .journey-steps {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 23px;
+        }
+
+        .journey-step {
+            padding: 14px;
+            border: 1px solid var(--skill-border);
+            border-radius: 13px;
+            background: rgba(0, 0, 0, .12);
+        }
+
+        .journey-step span {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--skill-cyan);
+            font-size: .72rem;
+            letter-spacing: 1px;
+        }
+
+        .journey-step strong {
+            font-size: .9rem;
+        }
+
+        .skills-note {
+            margin-top: 18px;
+            color: var(--skill-muted);
+            font-size: .83rem;
+            line-height: 1.7;
+        }
+
+        .skills-footer {
+            margin-top: 32px;
+            padding-top: 20px;
+            border-top: 1px solid var(--skill-border);
+            color: var(--skill-muted);
+            text-align: center;
+            font-size: .82rem;
+        }
+
+        .skills-footer a {
+            color: var(--skill-cyan);
+            text-decoration: none;
+        }
+
+        @media (max-width: 700px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .journey-steps {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .skills-hero {
+                padding-top: 48px;
+            }
+
+            .skill-card {
+                padding: 21px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .brand-name {
+                font-size: .8rem;
+                letter-spacing: 1px;
+            }
+
+            .skills-brand img {
+                width: 37px;
+                height: 37px;
+            }
+
+            .home-link {
+                padding: 9px 12px;
+                font-size: .85rem;
+            }
+
+            .skill-item {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 7px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="skills-page">
+        <header class="skills-header">
+            <a class="skills-brand" href="index.html" aria-label="VISHESH.CSE homepage">
+                <img src="assets/VC-logo.png" alt="VC logo">
+                <span>
+                    <span class="brand-name">VISHESH.CSE</span>
+                    <span class="brand-caption">LEARNING IN PUBLIC</span>
+                </span>
+            </a>
+
+            <a class="home-link" href="index.html">← Home</a>
+        </header>
+
+        <section class="skills-hero">
+            <span class="eyebrow">The toolkit I'm building</span>
+            <h1>Skills &amp; <span class="gradient-text">Growth</span></h1>
+            <p>
+                I'm a first-year Computer Science student learning by doing.
+                This page tracks the skills I'm practising, the technologies
+                I'm exploring, and the foundations I'm building for bigger projects.
+            </p>
+
+            <div class="status-strip" aria-label="Skill status legend">
+                <span class="status-pill">● Practising</span>
+                <span class="status-pill">● Learning</span>
+                <span class="status-pill">● Exploring</span>
+            </div>
+        </section>
+
+        <section aria-labelledby="skills-heading">
+            <div class="section-heading">
+                <h2 id="skills-heading">My current toolkit</h2>
+                <p>Real progress, no made-up percentages.</p>
+            </div>
+
+            <div class="skills-grid">
+                <article class="skill-card">
+                    <div class="card-top">
+                        <div class="skill-icon" aria-hidden="true">⌨️</div>
+                        <div>
+                            <h3>Programming</h3>
+                            <div class="card-kicker">Building the fundamentals</div>
+                        </div>
+                    </div>
+
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-name">C Programming</span>
+                            <span class="skill-status">PRACTISING</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Problem-solving &amp; logic</span>
+                            <span class="skill-status learning">LEARNING</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">HTML &amp; web fundamentals</span>
+                            <span class="skill-status learning">LEARNING</span>
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="skill-card">
+                    <div class="card-top">
+                        <div class="skill-icon" aria-hidden="true">🤖</div>
+                        <div>
+                            <h3>AI &amp; Exploration</h3>
+                            <div class="card-kicker">Understanding what comes next</div>
+                        </div>
+                    </div>
+
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-name">Introduction to Artificial Intelligence</span>
+                            <span class="skill-status">COMPLETED</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">GenAI &amp; data analytics workflow</span>
+                            <span class="skill-status">COMPLETED</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Voice-assistant project: Pragya</span>
+                            <span class="skill-status learning">BUILDING</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">LLM development concepts</span>
+                            <span class="skill-status exploring">EXPLORING</span>
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="skill-card">
+                    <div class="card-top">
+                        <div class="skill-icon" aria-hidden="true">🛠️</div>
+                        <div>
+                            <h3>Developer Tools</h3>
+                            <div class="card-kicker">Tools for making and sharing</div>
+                        </div>
+                    </div>
+
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-name">Git &amp; GitHub workflows</span>
+                            <span class="skill-status">PRACTISING</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Visual Studio Code</span>
+                            <span class="skill-status">USING</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">HTML, CSS &amp; JavaScript projects</span>
+                            <span class="skill-status learning">LEARNING</span>
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="skill-card">
+                    <div class="card-top">
+                        <div class="skill-icon" aria-hidden="true">🌐</div>
+                        <div>
+                            <h3>Professional Skills</h3>
+                            <div class="card-kicker">Growing beyond code</div>
+                        </div>
+                    </div>
+
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-name">Communication</span>
+                            <span class="skill-status learning">DEVELOPING</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Teamwork &amp; collaboration</span>
+                            <span class="skill-status learning">DEVELOPING</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Technical writing &amp; documentation</span>
+                            <span class="skill-status learning">PRACTISING</span>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="journey-panel" aria-labelledby="journey-heading">
+            <h2 id="journey-heading">The learning loop</h2>
+            <p>
+                My approach is simple: understand a concept, build something
+                with it, test what breaks, and improve it. Skills grow through
+                practice, not labels.
+            </p>
+
+            <div class="journey-steps">
+                <div class="journey-step">
+                    <span>01 / LEARN</span>
+                    <strong>Understand the basics</strong>
+                </div>
+                <div class="journey-step">
+                    <span>02 / BUILD</span>
+                    <strong>Turn ideas into projects</strong>
+                </div>
+                <div class="journey-step">
+                    <span>03 / TEST</span>
+                    <strong>Find and fix problems</strong>
+                </div>
+                <div class="journey-step">
+                    <span>04 / IMPROVE</span>
+                    <strong>Document the progress</strong>
+                </div>
+            </div>
+
+            <p class="skills-note">
+                These labels describe my current learning journey, not formal
+                proficiency ratings. I'll update this page as I complete projects
+                and gain practical experience.
+            </p>
+        </section>
+
+        <footer class="skills-footer">
+            <p>Every skill starts somewhere. This is my starting point.</p>
+            <a href="projects.html">Explore my projects →</a>
+            <span> · </span>
+            <a href="achievements.html">View achievements →</a>
+        </footer>
+    </main>
+</body>
+</html>
