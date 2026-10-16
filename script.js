@@ -1,26 +1,3 @@
-const menuToggle = document.getElementById("menu-toggle");
-const navLinks = document.getElementById("nav-links");
-
-menuToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-    menuToggle.setAttribute(
-        "aria-label",
-        isOpen ? "Close navigation menu" : "Open navigation menu"
-    );
-    menuToggle.textContent = isOpen ? "✕" : "☰";
-});
-
-document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && navLinks.classList.contains("open")) {
-        navLinks.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation menu");
-        menuToggle.textContent = "☰";
-        menuToggle.focus();
-    }
-});
-
 const shayaris = document.querySelectorAll(".shayari");
 const dots = document.querySelectorAll(".shayari-dots button");
 let currentShayari = 0;
@@ -55,6 +32,15 @@ dots.forEach((dot, index) => {
 
 showShayari(0);
 startShayariRotation();
+
+// Pause the rotation while the visitor is reading (hover or keyboard focus)
+const shayariSlider = document.querySelector(".shayari-slider");
+if (shayariSlider) {
+    shayariSlider.addEventListener("pointerenter", () => clearInterval(shayariTimer));
+    shayariSlider.addEventListener("pointerleave", startShayariRotation);
+    shayariSlider.addEventListener("focusin", () => clearInterval(shayariTimer));
+    shayariSlider.addEventListener("focusout", startShayariRotation);
+}
 
 /* ===== Phase 2: Live hero (aurora light, stars, particles, flowing river) =====
    Tip: open the site with ?debugriver at the end of the URL to see the river lanes. */
@@ -316,16 +302,48 @@ startShayariRotation();
 
     if (!enterButton || !portal) return;
 
-    let isEntering = false;
-    const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    // Change this if your button should open another page.
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const destination = enterButton.getAttribute("href") || "about.html";
 
-    // Show loading only when navigation takes noticeable time.
-    let progressTimer;
+    const REVEAL_AT = 650;     // VC logo awakens
+    const PROGRESS_AT = 1700;  // progress bar appears only if the next page is still not ready
+    const MIN_TIME = 1800;     // let the cinematic moment play
+    const MAX_TIME = 4000;     // never keep the visitor waiting longer than this
+
+    let isEntering = false;
+    let timers = [];
+    let pollTimer = null;
+
+    function later(fn, ms) {
+        const id = window.setTimeout(fn, ms);
+        timers.push(id);
+        return id;
+    }
+
+    // Used when the visitor comes back with the Back button
+    function resetPortal() {
+        isEntering = false;
+        timers.forEach(clearTimeout);
+        timers = [];
+        clearTimeout(pollTimer);
+        portal.classList.remove("active", "reveal");
+        portal.setAttribute("aria-hidden", "true");
+        if (progress) progress.classList.remove("visible");
+        enterButton.removeAttribute("aria-busy");
+    }
+
+    // Warm up the next page as soon as the visitor shows interest
+    let warmed = false;
+    function warmUp() {
+        if (warmed) return;
+        warmed = true;
+        const link = document.createElement("link");
+        link.rel = "prefetch";
+        link.href = destination;
+        document.head.appendChild(link);
+    }
+    enterButton.addEventListener("pointerenter", warmUp, { once: true });
+    enterButton.addEventListener("touchstart", warmUp, { once: true, passive: true });
 
     function enterWorld(event) {
         if (isEntering) {
@@ -334,11 +352,7 @@ startShayariRotation();
         }
 
         // Respect modified clicks and non-left mouse clicks.
-        if (
-            event.type === "click" &&
-            (event.ctrlKey || event.metaKey || event.shiftKey ||
-             event.altKey || event.button !== 0)
-        ) {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) {
             return;
         }
 
@@ -354,56 +368,55 @@ startShayariRotation();
             return;
         }
 
-        // Stage 1: light wave begins immediately.
-        // Stage 2: the wave expands and the screen darkens.
-        window.setTimeout(() => {
-            portal.classList.add("reveal");
-        }, 650);
+        const started = performance.now();
+        let ready = false;
+        fetch(destination, { credentials: "same-origin" })
+            .then(() => { ready = true; })
+            .catch(() => { ready = true; });
 
-        // Stage 3: VC logo awakens.
-        // Show progress only if we're still waiting.
-        progressTimer = window.setTimeout(() => {
-            if (progress) progress.classList.add("visible");
-        }, 1700);
+        later(() => portal.classList.add("reveal"), REVEAL_AT);
+        later(() => { if (!ready && progress) progress.classList.add("visible"); }, PROGRESS_AT);
 
-        // Stage 4: continue to the destination.
-        window.setTimeout(() => {
-            window.location.href = destination;
-        }, 2450);
+        (function waitForNextPage() {
+            const elapsed = performance.now() - started;
+            if ((ready && elapsed >= MIN_TIME) || elapsed >= MAX_TIME) {
+                window.location.href = destination;
+            } else {
+                pollTimer = window.setTimeout(waitForNextPage, 80);
+            }
+        })();
     }
 
     enterButton.addEventListener("click", enterWorld);
+    window.addEventListener("pageshow", resetPortal);
 })();
 
 /* ===== INITIAL HOMEPAGE LOADER CONTROLLER ===== */
 (() => {
     const loader = document.getElementById("introLoader");
-
     if (!loader) return;
 
-    const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    ).matches;
+    // Play the intro once per browser session, not every time Home is opened.
+    let seen = false;
+    try { seen = sessionStorage.getItem("vcIntroSeen") === "1"; } catch (e) {}
+    if (seen) {
+        loader.remove();
+        return;
+    }
+    try { sessionStorage.setItem("vcIntroSeen", "1"); } catch (e) {}
 
-    // Keep the intro brief and reveal the homepage.
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const displayTime = reduceMotion ? 150 : 1500;
 
     function hideLoader() {
         loader.classList.add("hide");
-
-        // Remove it after the fade so it cannot block the page.
-        window.setTimeout(() => {
-            loader.remove();
-        }, reduceMotion ? 50 : 750);
+        window.setTimeout(() => loader.remove(), reduceMotion ? 50 : 750);
     }
 
-    // Start the timer once the page has loaded.
     if (document.readyState === "complete") {
         window.setTimeout(hideLoader, displayTime);
     } else {
-        window.addEventListener("load", () => {
-            window.setTimeout(hideLoader, displayTime);
-        }, { once: true });
+        window.addEventListener("load", () => window.setTimeout(hideLoader, displayTime), { once: true });
     }
 
     // Safety fallback if loading takes unusually long.

@@ -1,0 +1,268 @@
+/* ===== Shared across all pages: page fade-in, burger menu, next-page button ===== */
+
+/* Stage 4 of the entrance: every page fades in smoothly */
+@keyframes vcPageIn { from { opacity: 0; } to { opacity: 1; } }
+body { animation: vcPageIn 0.6s ease both; }
+
+/* ---------- Burger menu on inner pages ---------- */
+.vc-menu { position: relative; display: inline-block; z-index: 60; }
+
+.vc-menu-btn {
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 14px;
+    background: rgba(8, 13, 28, 0.82);
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.vc-menu-btn:hover,
+.vc-menu-btn:focus-visible {
+    border-color: rgba(139, 233, 255, 0.6);
+    box-shadow: 0 0 18px rgba(100, 190, 255, 0.25);
+    outline: none;
+}
+
+.vc-menu-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    display: none;
+    min-width: 220px;
+    padding: 10px;
+    border: 1px solid rgba(139, 233, 255, 0.2);
+    border-radius: 16px;
+    background: rgba(8, 13, 28, 0.97);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+.vc-menu-panel.open { display: grid; gap: 4px; }
+
+.vc-menu-panel a,
+.site-nav a {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 9px;
+    color: #e8efff;
+    text-decoration: none;
+    text-align: left;
+    font-size: 15px;
+    transition: background 0.2s, color 0.2s;
+}
+.vc-menu-panel a:hover,
+.vc-menu-panel a:focus-visible,
+.site-nav a:hover,
+.site-nav a:focus-visible {
+    background: rgba(139, 233, 255, 0.12);
+    color: #8be9ff;
+    outline: none;
+}
+.vc-menu-panel a[aria-current="page"],
+.site-nav a[aria-current="page"] {
+    background: rgba(139, 233, 255, 0.16);
+    color: #8be9ff;
+    font-weight: 600;
+}
+
+/* ---------- End-of-page "next page" button ---------- */
+.vc-next {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 56px auto 36px;
+    padding: 0 20px;
+    text-align: center;
+}
+.vc-next-label {
+    margin: 0 0 16px;
+    color: #9be7ff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+}
+.vc-next-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    min-height: 52px;
+    padding: 15px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    background: linear-gradient(110deg, #8be9ff, #b9a5ff);
+    color: #071020;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 0 35px rgba(100, 190, 255, 0.22);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.vc-next-btn span { transition: transform 0.2s; }
+.vc-next-btn:hover,
+.vc-next-btn:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 0 48px rgba(100, 190, 255, 0.4);
+    outline: none;
+}
+.vc-next-btn:hover span,
+.vc-next-btn:focus-visible span { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+    body { animation: none; }
+    .vc-next-btn, .vc-next-btn span { transition: none; }
+}
+
+/* ===== HIDDEN UNIVERSE: SHARED PAGE TRANSITIONS ===== */
+
+.hu-page-transition {
+    position: fixed;
+    inset: 0;
+    z-index: 9998; /* Below the existing portal at 9999 */
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(30, 65, 115, 0.35),
+            rgba(2, 4, 11, 0.98)
+        );
+    transition:
+        opacity 180ms ease,
+        visibility 0s linear 180ms;
+}
+
+.hu-page-transition.active {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hu-page-transition {
+        transition: none;
+    }
+}
+/* Shared page edge fix */
+html {
+    margin: 0;
+    min-height: 100%;
+    background: #02040b;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #02040b;
+    overflow-x: clip;
+}
+/* ===== GLOBAL HIDDEN UNIVERSE ELEMENTS ===== */
+
+/* Wandering Constellation Stars */
+.constellation-star {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: #8be9ff;
+    border-radius: 50%;
+    box-shadow: 0 0 16px #8be9ff, 0 0 32px #b9a5ff;
+    cursor: pointer;
+    z-index: 9997;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.6s ease;
+    animation: floatStar 7s ease-in-out infinite;
+}
+
+.constellation-star:hover {
+    transform: scale(2);
+    background: #ffffff;
+}
+
+@keyframes floatStar {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-18px) translateX(12px); }
+}
+
+/* Moving Digital Soul Orb */
+.digital-soul-orb {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #8be9ff 0%, #7b6fff 60%, #080d1c 100%);
+    box-shadow: 0 0 22px rgba(139, 233, 255, 0.4), inset 0 0 12px rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    z-index: 9996;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Smooth gliding movement */
+    transition: left 4s cubic-bezier(0.25, 1, 0.5, 1), top 4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s ease, box-shadow 0.3s ease;
+    animation: soulPulse 3s infinite alternate;
+}
+
+.digital-soul-orb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 40px rgba(139, 233, 255, 0.9);
+}
+
+@keyframes soulPulse {
+    from { box-shadow: 0 0 18px rgba(139, 233, 255, 0.3); }
+    to { box-shadow: 0 0 30px rgba(185, 165, 255, 0.7); }
+}
+
+/* Global Discovery Modal */
+.hu-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 7, 18, 0.85);
+    backdrop-filter: blur(16px);
+    z-index: 10000;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+}
+
+.hu-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.hu-modal-card {
+    background: linear-gradient(145deg, rgba(20, 34, 59, 0.95), rgba(9, 16, 32, 0.95));
+    border: 1px solid rgba(139, 233, 255, 0.35);
+    border-radius: 22px;
+    padding: 32px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    position: relative;
+    transform: translateY(15px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hu-modal.active .hu-modal-card {
+    transform: translateY(0);
+}
+
+.hu-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: #8be9ff;
+    font-size: 20px;
+    cursor: pointer;
+}

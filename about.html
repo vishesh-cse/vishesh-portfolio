@@ -11,6 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <link rel="icon" href="assets/v-logo.png">
+    <link rel="stylesheet" href="site.css">
+
     <style>
         .about-page {
             min-height: 100vh;
@@ -418,6 +421,13 @@
                 transition: none !important;
             }
         }
+        /* Smaller next-page button on About */
+        .about-page .vc-next-btn {
+            min-height: 42px;
+            padding: 10px 22px;
+            gap: 9px;
+            font-size: 14px;
+        }
     </style>
 </head>
 
@@ -543,17 +553,20 @@
                 <h2>Still learning. Always building.</h2>
                 <p>
                     This is an evolving journey, not a finished story.
-                    The projects page is where I document what I'm making.
+                    The next pages show what I'm learning and building.
                 </p>
             </div>
-
-            <a class="projects-link" href="projects.html">Explore projects ↗</a>
         </section>
     </div>
 
-    <footer class="page-footer">
+    <nav class="vc-next" aria-label="Next page">
+    <p class="vc-next-label">Page 2 of 7 · Next</p>
+    <a class="vc-next-btn" href="skills.html">Skills <span aria-hidden="true">→</span></a>
+</nav>
+<footer class="page-footer">
         <p>© 2026 Vishesh Chaudhary · Learn. Build. Evolve.</p>
     </footer>
 </main>
+<script src="site.js" defer></script>
 </body>
 </html>

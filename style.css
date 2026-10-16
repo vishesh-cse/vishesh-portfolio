@@ -702,3 +702,6 @@ background: rgba(139, 233, 255, 0.12);
         transition: none !important;
     }
 }
+
+/* Intro loader is skipped after the first homepage visit in a session */
+.skip-intro .intro-loader { display: none !important; }
